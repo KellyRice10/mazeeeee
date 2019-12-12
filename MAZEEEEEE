@@ -94,3 +94,104 @@ public class MazeP7 extends JComponent implements MouseMotionListener {
 	}
 
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+package mazegame;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
+
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+
+public class MazeP7 extends JComponent implements MouseMotionListener {
+
+	public static void main(String[] args) {
+		MazeP7 game = new MazeP7();
+		
+		JFrame frame = new JFrame("Maze Game");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		frame.setSize(800,800);
+		
+		frame.addMouseMotionListener(game);
+		frame.add(game);
+		
+
+	}
+	
+	Rectangle player = new Rectangle(-50, -50, 10, 10);
+	Rectangle start = new Rectangle(0, 0, 50, 50);
+	Rectangle end= new Rectangle(400, 325, 50, 50);
+	
+	ArrayList<Rectangle> walls = new ArrayList<Rectangle>();
+	boolean hasLost = false;
+	
+	public MazeP7(){			//x, y, width, height
+		/*walls.add(new Rectangle(0, 0, 10, 800));
+		walls.add(new Rectangle(30, 0, 700, 10));
+		
+		walls.add(new Rectangle(30, 0, 10, 600));
+		walls.add(new Rectangle(0, 644, 700, 10));
+		walls.add(new Rectangle(736, 693, -700, 10));
+		walls.add(new Rectangle(736, 643, 10, 60));
+		walls.add(new Rectangle(774, 0, 10, 800));
+		walls.add(new Rectangle(0, 751, 800, 10));
+		walls.add(new Rectangle(39, 590, 380, 10));
+		walls.add(new Rectangle(69, 549, 350, 10));
+		walls.add(new Rectangle(409, 590, 10, -40));
+		walls.add(new Rectangle(30, 508, 390, 10));
+		walls.add(new Rectangle(410, 508, 10, -40));
+		walls.add(new Rectangle(410, 468,-230, 10));
+		walls.add(new Rectangle(410, 468, 10, 60));
+		
+		walls.add(new Rectangle(, , , ));
+		walls.add(new Rectangle(, , , ));
+		walls.add(new Rectangle(, , , ));
+		
+		walls.add(new Rectangle(, , , ));
+		*/
+		
+		
+		
+	}
+	
+	
+	public void paintComponent(Graphics g) {
+			g.setColor(Color.magenta);
+			g.fillRect(player.x, player.y, player.width, player.height);
+			
+			for(Rectangle r : walls) {
+				g.fillRect(r.x, r.y, r.width, r.height);
+			}
+			
+			if (hasLost == true) {
+				g.fillRect(0,  0,  600,  600);
+			}
+		}
+	
+	
+	//public
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		player.x = e.getX();
+		player.y = e.getY();
+		System.out.println (player.x + ", "+ player.y);
+		
+		repaint();
+		
+	}
+
+}
+
